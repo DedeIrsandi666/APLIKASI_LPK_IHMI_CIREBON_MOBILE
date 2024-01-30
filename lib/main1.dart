@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(title: 'LOGIN to LPK IHMI CIREBON'),      
+      home: LoginPage(title: 'LOGIN to LPK IHMI CIREBON'),
     );
   }
 }
@@ -35,12 +35,11 @@ class _MyLoginpageState extends State<LoginPage> {
   Future userLogin() async {
     // print(pass);
     // print(user);
-    final response = await http.post(
-        Uri.parse("http://localhost:8080/api/login"),
-        body: {
-          "UNAME": user.text,
-          "UPASS": pass.text,
-        });
+    final response =
+        await http.post(Uri.parse("http://localhost:8080/api/login"), body: {
+      "UNAME": user.text,
+      "UPASS": pass.text,
+    });
 
     final datauser = jsonDecode(response.body);
 

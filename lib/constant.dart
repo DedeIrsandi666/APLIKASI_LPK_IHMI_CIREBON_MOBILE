@@ -7,6 +7,7 @@ Color secondaryTextColor = const Color(0xff524B6B);
 Color buttonColor = const Color(0xffE6E1FF);
 Color primaryButtonColor = const Color.fromARGB(255, 55, 10, 114);
 Color greyColor = Colors.grey;
+Color appbarBackColor = const Color.fromARGB(255, 226, 225, 235);
 
 TextStyle whiteTextStyle = GoogleFonts.dmSans(
   color: whiteColor,

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:convert';
 import 'dart:async';
 import 'package:lpk_ihmi_mobile/model/informasi.dart';

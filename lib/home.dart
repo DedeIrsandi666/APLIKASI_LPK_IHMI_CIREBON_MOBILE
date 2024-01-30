@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage();
     } else if (currentPage == DrawerSections.events) {
-      container = EventsPage();
+      container = const EventsPage();
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {
@@ -79,13 +79,13 @@ class _HomePageState extends State<HomePage> {
         children: [
           menuItem(1, "Home", Icons.home_outlined,
               currentPage == DrawerSections.dasboard ? true : false),
-    
+
           menuItem(2, "Halaman Informasi", Icons.info_outlined,
               currentPage == DrawerSections.contacts ? true : false),
-          
+
           menuItem(3, "Halaman Daftar Peserta", Icons.people_alt_outlined,
               currentPage == DrawerSections.events ? true : false),
-          
+
           // menuItem(4, "Notes", Icons.notes,
           //     currentPage == DrawerSections.notes ? true : false),
           // const Divider(),
@@ -101,12 +101,14 @@ class _HomePageState extends State<HomePage> {
           ElevatedButton(
             child: const Text("LOGOUT"),
             onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(title: 'logout',),
-                      ),
-                    );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(
+                    title: 'logout',
+                  ),
+                ),
+              );
             },
           ),
         ],
