@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'dart:convert';
 import 'dart:async';
 import 'package:lpk_ihmi_mobile/model/informasi.dart';
@@ -13,22 +12,20 @@ class ApiInformasiStatic {
   static getInformasi() {}
 }
 
-Future<List<Informasi>> 
-getInformasi() async {
+Future<List<Informasi>> getInformasi() async {
   try {
     String url = getHost() + "/api/informasi";
     final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       final parsed = json['data'].cast<Map<String, dynamic>>();
       return parsed.map<Informasi>((json) => Informasi.fromJson(json)).toList();
-    }else{
+    } else {
       return [];
     }
-  }catch (e){
+  } catch (e) {
     return [];
   }
 }
 
-getHost() {
-}
+getHost() {}

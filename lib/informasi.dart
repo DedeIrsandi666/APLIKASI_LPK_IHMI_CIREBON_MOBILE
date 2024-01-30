@@ -9,7 +9,7 @@ import 'package:lpk_ihmi_mobile/constant.dart';
 class ContactsPage extends StatelessWidget {
   Future<List<dynamic>> fetchData() async {
     // List listData;
-    const String apiUrl = "http://localhost:8000/api/informasi";
+    //const String apiUrl = "http://192.168.100.171:8000/api/informasi";
 
     final response = await http.get(Uri.parse(apiUrl));
 
@@ -108,7 +108,7 @@ class ContactsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.network(
-              'http://localhost:8000/data_img/informasi/${post['gambar']}',
+              '$apiUrl/data_img/informasi/${post['gambar']}',
               fit: BoxFit.cover,
             ),
             Padding(

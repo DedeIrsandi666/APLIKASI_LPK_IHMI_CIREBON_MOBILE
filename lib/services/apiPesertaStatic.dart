@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'dart:convert';
 import 'dart:async';
 import '../model/peserta.dart';
@@ -18,19 +17,16 @@ Future<List<Peserta>> getPeserta() async {
   try {
     String url = getHost() + "/api/Peserta";
     final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       final parsed = json['data'].cast<Map<String, dynamic>>();
       return parsed.map<Peserta>((json) => Peserta.fromJson(json)).toList();
-    }else{
+    } else {
       return [];
     }
-  }catch (e){
+  } catch (e) {
     return [];
   }
 }
 
-getHost() {
-}
-
-
+getHost() {}

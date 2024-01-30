@@ -91,9 +91,9 @@ class EventsPage extends StatelessWidget {
   Future<List<dynamic>> fetchData() async {
     // ignore: unused_local_variable
     List listData = [];
-    const String apiUrl = "http://localhost:8000/api/peserta";
+    const String apiUrl1 = "$apiUrl/api/peserta";
 
-    final response = await http.get(Uri.parse(apiUrl));
+    final response = await http.get(Uri.parse(apiUrl1));
 
     log("RESPONSE === $response");
 
@@ -140,7 +140,7 @@ class EventsPage extends StatelessWidget {
                     radius: 30,
                     backgroundImage: NetworkImage(
                       // ignore: prefer_interpolation_to_compose_strings
-                      'http://localhost:8000/data_img/peserta/' +
+                      '$apiUrl/data_img/peserta/' +
                           snapshot.data![index]['foto'],
                     ),
                   ),

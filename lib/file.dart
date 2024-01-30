@@ -29,8 +29,6 @@ class HomePage extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
-
-  
 }
 
 class _HomePageState extends State<HomePage> {
@@ -39,21 +37,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // ignore: prefer_typing_uninitialized_variables
     var container;
-    if(currentPage == DrawerSections.dasboard){
+    if (currentPage == DrawerSections.dasboard) {
       container = DashboardPage();
-    }else if(currentPage == DrawerSections.contacts){
+    } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage();
-    }else if(currentPage == DrawerSections.events){
+    } else if (currentPage == DrawerSections.events) {
       container = const EventsPage();
-    }else if(currentPage == DrawerSections.notes){
+    } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
-    }else if(currentPage == DrawerSections.settings){
+    } else if (currentPage == DrawerSections.settings) {
       container = SettingsPage();
-    }else if(currentPage == DrawerSections.notifications){
+    } else if (currentPage == DrawerSections.notifications) {
       container = NotificationsPage();
-    }else if(currentPage == DrawerSections.privacy_policy){
+    } else if (currentPage == DrawerSections.privacy_policy) {
       container = PrivacyPolicyPage();
-    }else if(currentPage == DrawerSections.send_feedback){
+    } else if (currentPage == DrawerSections.send_feedback) {
       container = SendFeedbackPage();
     }
     return Scaffold(
@@ -78,8 +76,8 @@ class _HomePageState extends State<HomePage> {
                 MyDrawerList(),
               ],
             ),
+          ),
         ),
-      ),
       ),
     );
   }
@@ -91,27 +89,27 @@ class _HomePageState extends State<HomePage> {
         top: 15,
       ),
       child: Column(
-      children: [
-        menuItem(1, "Dashboard", Icons.dashboard_outlined,
-            currentPage == DrawerSections.dasboard ? true : false),
-        menuItem(2, "Contacts", Icons.people_alt_outlined,
-            currentPage == DrawerSections.contacts ? true : false),
-        menuItem(3, "Events", Icons.event,
-            currentPage == DrawerSections.events ? true : false),
-        menuItem(4, "Notes", Icons.notes,
-            currentPage == DrawerSections.notes ? true : false),
-        const Divider(),
-        menuItem(5, "Settings", Icons.settings_accessibility_outlined,
-            currentPage == DrawerSections.settings ? true : false),
-        menuItem(6, "Notifications", Icons.notification_add_outlined,
-            currentPage == DrawerSections.notifications ? true : false),
-        const Divider(),
-        menuItem(7, "Privacy Policy", Icons.privacy_tip_outlined,
-            currentPage == DrawerSections.privacy_policy ? true : false),
-        menuItem(8, "Contacts", Icons.feedback_outlined,
-            currentPage == DrawerSections.send_feedback ? true : false),
-      ],
-    ),
+        children: [
+          menuItem(1, "Dashboard", Icons.dashboard_outlined,
+              currentPage == DrawerSections.dasboard ? true : false),
+          menuItem(2, "Contacts", Icons.people_alt_outlined,
+              currentPage == DrawerSections.contacts ? true : false),
+          menuItem(3, "Events", Icons.event,
+              currentPage == DrawerSections.events ? true : false),
+          menuItem(4, "Notes", Icons.notes,
+              currentPage == DrawerSections.notes ? true : false),
+          const Divider(),
+          menuItem(5, "Settings", Icons.settings_accessibility_outlined,
+              currentPage == DrawerSections.settings ? true : false),
+          menuItem(6, "Notifications", Icons.notification_add_outlined,
+              currentPage == DrawerSections.notifications ? true : false),
+          const Divider(),
+          menuItem(7, "Privacy Policy", Icons.privacy_tip_outlined,
+              currentPage == DrawerSections.privacy_policy ? true : false),
+          menuItem(8, "Contacts", Icons.feedback_outlined,
+              currentPage == DrawerSections.send_feedback ? true : false),
+        ],
+      ),
     );
   }
 
@@ -123,7 +121,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
-            currentPage = DrawerSections.dasboard;
+              currentPage = DrawerSections.dasboard;
             } else if (id == 2) {
               currentPage = DrawerSections.contacts;
             } else if (id == 3) {
@@ -146,10 +144,10 @@ class _HomePageState extends State<HomePage> {
           child: Row(children: [
             Expanded(
               child: Icon(
-                // ignore: unnecessary_new
-                icon, 
-                size: 20, 
-                color: Colors.black),
+                  // ignore: unnecessary_new
+                  icon,
+                  size: 20,
+                  color: Colors.black),
             ),
             Expanded(
               flex: 1,
