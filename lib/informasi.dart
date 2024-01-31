@@ -10,8 +10,9 @@ class ContactsPage extends StatelessWidget {
   Future<List<dynamic>> fetchData() async {
     // List listData;
     //const String apiUrl = "http://192.168.100.171:8000/api/informasi";
+    const String apiUrl2 = "$apiUrl/api/informasi";
 
-    final response = await http.get(Uri.parse(apiUrl));
+    final response = await http.get(Uri.parse(apiUrl2));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body)['data'];
