@@ -4,6 +4,10 @@ description: A new Flutter project.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
+flutter_native_splash:
+    color: "#ffffff"
+    image: assets/images/lpk_ihmi.png
+
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
@@ -40,6 +44,7 @@ dependencies:
   get: ^4.6.6
   shared_preferences: ^2.2.2
   get_storage: ^2.1.1
+  flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +56,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
