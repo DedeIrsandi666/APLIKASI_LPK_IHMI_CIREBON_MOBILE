@@ -68,3 +68,35 @@ class EventsPage extends StatelessWidget {
     );
   }
 }
+
+// const Text(
+                //   "Menu Pencarian",
+                //   textAlign: TextAlign.left,
+                //   style: TextStyle(
+                //     color: Colors.black,
+                //     fontSize: 15.0,
+                //     fontWeight: FontWeight.normal,
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10.0,
+                // ),
+                // TextField(
+                //   style: const TextStyle(color: Colors.white),
+                //   decoration: InputDecoration(
+                //     filled: true,
+                //     fillColor: Colors.grey,
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(5.0),
+                //       borderSide: BorderSide.none,
+                //     ),
+                //     hintText: "Pencarian berdasarkan Nama & Tahun Angkatan",
+                //     hintStyle: textTextStyle.copyWith(
+                //       fontSize: 12,
+                //       color: yesColor.withOpacity(0.6),
+                //     ),
+                //     // ignore: prefer_const_constructors
+                //     suffixIcon: Icon(Icons.search),
+                //     prefixIconColor: secondaryTextColor,
+                //   ),
+                // ),
