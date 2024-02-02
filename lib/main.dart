@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lpk_ihmi_mobile/login.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(title: 'LOGIN to LPK IHMI CIREBON'),
       // routes: {

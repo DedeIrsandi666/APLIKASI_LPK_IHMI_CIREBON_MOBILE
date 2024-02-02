@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const apiUrl = 'http://localhost:8000';
+const apiUrl = 'http://192.168.100.171:8000';
 
 Color whiteColor = const Color(0xffffffff);
 Color textColor = const Color.fromARGB(255, 55, 10, 114);
@@ -10,6 +10,7 @@ Color buttonColor = const Color(0xffE6E1FF);
 Color primaryButtonColor = const Color.fromARGB(255, 55, 10, 114);
 Color greyColor = Colors.grey;
 Color appbarBackColor = const Color.fromARGB(255, 226, 225, 235);
+Color yesColor = Colors.black;
 
 TextStyle whiteTextStyle = GoogleFonts.dmSans(
   color: whiteColor,

@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:lpk_ihmi_mobile/constant.dart';
 import 'package:lpk_ihmi_mobile/informasi.dart';
 import 'package:lpk_ihmi_mobile/dashboard.dart';
 import 'package:lpk_ihmi_mobile/main1.dart';
@@ -9,6 +14,7 @@ import 'package:lpk_ihmi_mobile/notifications.dart';
 import 'package:lpk_ihmi_mobile/privacy_policy.dart';
 import 'package:lpk_ihmi_mobile/send_feedback.dart';
 import 'package:lpk_ihmi_mobile/settings.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required String title});
@@ -23,6 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _box = GetStorage();
     // ignore: prefer_typing_uninitialized_variables
     var container;
     if (currentPage == DrawerSections.dasboard) {
@@ -61,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 MyHeaderDrawer(),
-                myDrawerList(),
+                myDrawerList(_box),
               ],
             ),
           ),
@@ -70,7 +77,99 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  myDrawerList() {
+  Future logout() async {
+    String url = "$apiUrl/api/logout";
+    final _box = GetStorage();
+
+    var token = _box.read("login");
+
+    // setHeader() =>
+    //     {'Content-type': 'application/json', 'accept': 'application/json'};
+
+    try {
+      var response = await http.post(
+        Uri.parse(url),
+        headers: {"Authorization": "Bearer $token"},
+      );
+      // emailController.value.clear();
+      // passwordController.value.clear();
+      // box.remove(userToken);
+
+      if (response.statusCode == 200) {
+        final responseJson = json.decode(response.body);
+        _box.remove("login");
+        Get.offAll(const LoginPage(title: "Login"));
+
+        return responseJson;
+      } else {
+        throw Exception(response.body);
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+
+    //   try {
+    //     var response = await http.post(Uri.parse(url),
+    //         body: json.encode(data), headers: setHeader());
+
+    //     // ignore: avoid_print
+    //     print(response.body);
+    //     if (response.statusCode == 200) {
+    //       var msg = jsonDecode(response.body);
+
+    //       //data baru
+    //       final token = msg['token'];
+
+    //       _box.remove('login');
+
+    //       await prefs.setString('token', token);
+    //       //data baru
+
+    //       if (msg['loginStatus'] == true) {
+    //         setState(() {
+    //           _visible = false;
+    //         });
+
+    //         var userInfo = msg['userInfo'];
+    //         if (userInfo != null) {
+    //           // ignore: unused_local_variable
+    //           var userName = userInfo['nama'];
+
+    //           Future.delayed(Duration.zero, () {
+    //             Navigator.push(
+    //               context,
+    //               MaterialPageRoute(
+    //                 builder: (context) => const HomePage(title: "halo"),
+    //               ),
+    //             );
+    //           });
+    //         } else {
+    //           showMessage("Invalid user information");
+    //         }
+    //       } else {
+    //         setState(() {
+    //           _visible = false;
+    //           showMessage(msg["message"]);
+    //         });
+    //       }
+    //     } else {
+    //       setState(() {
+    //         _visible = false;
+    //         showMessage(
+    //             "Error during connecting to Server. Status Code: ${response.statusCode}");
+    //       });
+    //     }
+    //   } catch (e) {
+    //     // ignore: avoid_print
+    //     print('Error: $e'); // Print the error for debugging
+    //     setState(() {
+    //       _visible = false;
+    //       showMessage("Error during connecting to Server: $e");
+    //     });
+    //   }
+  }
+
+  myDrawerList(GetStorage box) {
     return Container(
       padding: const EdgeInsets.only(
         top: 15,
@@ -101,13 +200,14 @@ class _HomePageState extends State<HomePage> {
           ElevatedButton(
             child: const Text("LOGOUT"),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const LoginPage(
-                          title: 'logout',
-                        )),
-              );
+              logout();
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => const LoginPage(
+              //             title: 'logout',
+              //           )),
+              // );
             },
           ),
         ],

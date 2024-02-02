@@ -1,13 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lpk_ihmi_mobile/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:lpk_ihmi_mobile/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key, required this.title}) : super(key: key);
+  LoginPage({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   // ignore: library_private_types_in_public_api
   _MyLoginpageState createState() => _MyLoginpageState();
@@ -30,6 +33,8 @@ class _MyLoginpageState extends State<LoginPage> {
     //Login API URL
     //dan gunakan alamat IP lokal atau localhost atau gunakan API Web
     String url = "$apiUrl/api/login";
+
+    final _box = GetStorage();
 
     setState(() {
       _visible = true;
@@ -54,6 +59,16 @@ class _MyLoginpageState extends State<LoginPage> {
       print(response.body);
       if (response.statusCode == 200) {
         var msg = jsonDecode(response.body);
+
+        //data baru
+        final token = msg['token'];
+
+        _box.write('login', token);
+
+        // final SharedPreferences prefs = await SharedPreferences.getInstance();
+        // await prefs.setString('token', token);
+        //data baru
+
         if (msg['loginStatus'] == true) {
           setState(() {
             _visible = false;
