@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const apiUrl = 'https://lpkihmi.logic.my.id';
+//const apiUrl = 'https://localhost:8000';
 
 Color whiteColor = const Color(0xffffffff);
 Color textColor = const Color.fromARGB(255, 55, 10, 114);

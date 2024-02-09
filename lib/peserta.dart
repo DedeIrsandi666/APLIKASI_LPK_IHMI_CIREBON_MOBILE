@@ -66,6 +66,7 @@ class EventsPage extends StatelessWidget {
                         leading: CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
+                            // ignore: prefer_interpolation_to_compose_strings
                             '$apiUrl/data_img/peserta/' +
                                 snapshot.data![index]['foto'],
                           ),

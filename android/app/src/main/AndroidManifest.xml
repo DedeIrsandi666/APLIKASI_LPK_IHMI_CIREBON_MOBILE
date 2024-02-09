@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lpk_ihmi_mobile">
-    <uses-permission android:name="android.permission.INTENET"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="lpk_ihmi_cirebon"
-        android:name="lpk_ihmi_cirebon"
+        android:label="LPK IHMI CIREBON"
+        android:name="${applicationName}"
         android:icon="@drawable/splash">
         <activity
             android:name=".MainActivity"

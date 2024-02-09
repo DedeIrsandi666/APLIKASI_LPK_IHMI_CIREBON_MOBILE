@@ -1,12 +1,18 @@
+//import 'dart:convert';
+// ignore: avoid_web_libraries_in_flutter
+//import 'dart:js';
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+//import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lpk_ihmi_mobile/constant.dart';
+//import 'package:lpk_ihmi_mobile/constant.dart';
 import 'package:lpk_ihmi_mobile/informasi.dart';
 import 'package:lpk_ihmi_mobile/dashboard.dart';
-import 'package:lpk_ihmi_mobile/main1.dart';
+import 'package:lpk_ihmi_mobile/login.dart';
 import 'package:lpk_ihmi_mobile/peserta.dart';
 import 'package:lpk_ihmi_mobile/my_drawer_header.dart';
 import 'package:lpk_ihmi_mobile/notes.dart';
@@ -27,8 +33,51 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var currentPage = DrawerSections.dasboard;
 
+  Future<dynamic> logout() async {
+    String logoutUrl = "$apiUrl/api/logout";
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _box = GetStorage();
+
+    var token = _box.read('login');
+    try {
+      var response = await http.post(
+        Uri.parse(logoutUrl),
+        headers: {"Authorization": "Bearer $token"},
+      );
+
+      if (response.statusCode == 200) {
+        final responseJson = json.decode(response.body);
+        _box.remove('login');
+        Get.offAll(const LoginPage(
+          title: "LOGIN to LPK IHMI CIREBON",
+        ));
+        return responseJson;
+      } else {
+        throw Exception(response.body);
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  // void logout() {
+  //   setState(() {
+  //     // _visible = true;
+  //   });
+
+  //   Navigator.push(
+  //     context as BuildContext,
+  //     MaterialPageRoute(
+  //       builder: (context) => const LoginPage(
+  //         title: 'Selamat Datang',
+  //       ),
+  //     ),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     final _box = GetStorage();
     // ignore: prefer_typing_uninitialized_variables
     var container;
@@ -77,97 +126,108 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future logout() async {
-    String url = "$apiUrl/api/logout";
-    final _box = GetStorage();
+  // Future logout() async {
+  //   String url = "$apiUrl/api/logout";
+  //   // ignore: no_leading_underscores_for_local_identifiers
+  //   final _box = GetStorage();
 
-    var token = _box.read("login");
+  //   var token = _box.read("login");
 
-    // setHeader() =>
-    //     {'Content-type': 'application/json', 'accept': 'application/json'};
+  //   // setHeader() =>
+  //   //     {'Content-type': 'application/json', 'accept': 'application/json'};
 
-    try {
-      var response = await http.post(
-        Uri.parse(url),
-        headers: {"Authorization": "Bearer $token"},
-      );
-      // emailController.value.clear();
-      // passwordController.value.clear();
-      // box.remove(userToken);
+  //   try {
+  //     var response = await http.post(
+  //       Uri.parse(url),
+  //       headers: {"Authorization": "Bearer $token"},
+  //     );
+  //     // emailController.value.clear();
+  //     // passwordController.value.clear();
+  //     // box.remove(userToken);
 
-      if (response.statusCode == 200) {
-        final responseJson = json.decode(response.body);
-        _box.remove("login");
-        Get.offAll(const LoginPage(title: "Login"));
+  //     if (response.statusCode == 200) {
+  //       final responseJson = json.decode(response.body);
+  //       _box.remove("login");
+  //       Get.offAll(const LoginPage(title: "Login"));
 
-        return responseJson;
-      } else {
-        throw Exception(response.body);
-      }
-    } catch (e) {
-      throw Exception(e);
-    }
+  //       return responseJson;
+  //     } else {
+  //       throw Exception(response.body);
+  //     }
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
 
-    //   try {
-    //     var response = await http.post(Uri.parse(url),
-    //         body: json.encode(data), headers: setHeader());
+  //   //   try {
+  //   //     var response = await http.post(Uri.parse(url),
+  //   //         body: json.encode(data), headers: setHeader());
 
-    //     // ignore: avoid_print
-    //     print(response.body);
-    //     if (response.statusCode == 200) {
-    //       var msg = jsonDecode(response.body);
+  //   //     // ignore: avoid_print
+  //   //     print(response.body);
+  //   //     if (response.statusCode == 200) {
+  //   //       var msg = jsonDecode(response.body);
 
-    //       //data baru
-    //       final token = msg['token'];
+  //   //       //data baru
+  //   //       final token = msg['token'];
 
-    //       _box.remove('login');
+  //   //       _box.remove('login');
 
-    //       await prefs.setString('token', token);
-    //       //data baru
+  //   //       await prefs.setString('token', token);
+  //   //       //data baru
 
-    //       if (msg['loginStatus'] == true) {
-    //         setState(() {
-    //           _visible = false;
-    //         });
+  //   //       if (msg['loginStatus'] == true) {
+  //   //         setState(() {
+  //   //           _visible = false;
+  //   //         });
 
-    //         var userInfo = msg['userInfo'];
-    //         if (userInfo != null) {
-    //           // ignore: unused_local_variable
-    //           var userName = userInfo['nama'];
+  //   //         var userInfo = msg['userInfo'];
+  //   //         if (userInfo != null) {
+  //   //           // ignore: unused_local_variable
+  //   //           var userName = userInfo['nama'];
 
-    //           Future.delayed(Duration.zero, () {
-    //             Navigator.push(
-    //               context,
-    //               MaterialPageRoute(
-    //                 builder: (context) => const HomePage(title: "halo"),
-    //               ),
-    //             );
-    //           });
-    //         } else {
-    //           showMessage("Invalid user information");
-    //         }
-    //       } else {
-    //         setState(() {
-    //           _visible = false;
-    //           showMessage(msg["message"]);
-    //         });
-    //       }
-    //     } else {
-    //       setState(() {
-    //         _visible = false;
-    //         showMessage(
-    //             "Error during connecting to Server. Status Code: ${response.statusCode}");
-    //       });
-    //     }
-    //   } catch (e) {
-    //     // ignore: avoid_print
-    //     print('Error: $e'); // Print the error for debugging
-    //     setState(() {
-    //       _visible = false;
-    //       showMessage("Error during connecting to Server: $e");
-    //     });
-    //   }
-  }
+  //   //           Future.delayed(Duration.zero, () {
+  //   //             Navigator.push(
+  //   //               context,
+  //   //               MaterialPageRoute(
+  //   //                 builder: (context) => const HomePage(title: "halo"),
+  //   //               ),
+  //   //             );
+  //   //           });
+  //   //         } else {
+  //   //           showMessage("Invalid user information");
+  //   //         }
+  //   //       } else {
+  //   //         setState(() {
+  //   //           _visible = false;
+  //   //           showMessage(msg["message"]);
+  //   //         });
+  //   //       }
+  //   //     } else {
+  //   //       setState(() {
+  //   //         _visible = false;
+  //   //         showMessage(
+  //   //             "Error during connecting to Server. Status Code: ${response.statusCode}");
+  //   //       });
+  //   //     }
+  //   //   } catch (e) {
+  //   //     // ignore: avoid_print
+  //   //     print('Error: $e'); // Print the error for debugging
+  //   //     setState(() {
+  //   //       _visible = false;
+  //   //       showMessage("Error during connecting to Server: $e");
+  //   //     });
+  //   //   }
+  // }
+
+  // Future logout() {
+  //   setState(() {
+  //     _visible = true;
+  //   });
+
+  //   Navigator.pushReplacement(
+  //     context, LoginPage(title: "Selamat Datang")
+  //   );
+  // }
 
   myDrawerList(GetStorage box) {
     return Container(
@@ -220,7 +280,8 @@ class _HomePageState extends State<HomePage> {
       color: selected ? Colors.grey[300] : Colors.transparent,
       child: InkWell(
         onTap: () {
-          Navigator.pop(context);
+          // ignore: unnecessary_cast
+          Navigator.pop(context as BuildContext);
           setState(() {
             if (id == 1) {
               currentPage = DrawerSections.dasboard;
